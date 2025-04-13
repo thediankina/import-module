@@ -35,5 +35,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
         ],
+        'storage' => [
+            'class' => 'app\src\components\storage\Component',
+            'dirPath' => $_ENV['STORAGE_DIR_PATH'],
+        ],
     ],
 ];
