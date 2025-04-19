@@ -2,9 +2,10 @@
 
 namespace app\src\components\storage\objects;
 
+use app\src\components\importer\interfaces\FileInterface;
 use yii\base\BaseObject;
 
-class File extends BaseObject
+class File extends BaseObject implements FileInterface
 {
     /**
      * {@inheritdoc}
@@ -37,6 +38,9 @@ class File extends BaseObject
         return $this->getName() . '.' . $this->getExtension();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getPath(): string
     {
         return $this->dirPath . '/' . $this->getBaseName();

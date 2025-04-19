@@ -25,5 +25,9 @@ return [
                 ],
             ],
         ],
+        'importer' => [
+            'class' => 'app\src\components\importer\Component',
+            'readerType' => \PhpOffice\PhpSpreadsheet\IOFactory::READER_CSV,
+        ],
     ],
 ];
