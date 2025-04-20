@@ -3,7 +3,7 @@
 namespace app\src\components\importer;
 
 use app\src\base\exceptions\UserException;
-use app\src\components\importer\interfaces\BuilderInterface;
+use app\src\components\importer\builders\Builder;
 use app\src\components\importer\interfaces\FileInterface;
 use app\src\helpers\LogHelper;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -14,7 +14,7 @@ class Component extends \yii\base\Component
 {
     public $readerType;
 
-    public function import(FileInterface $file, BuilderInterface $builder): bool
+    public function import(FileInterface $file, Builder $builder): bool
     {
         $reader = $this->readerType ?
             IOFactory::createReader($this->readerType) :
@@ -23,7 +23,7 @@ class Component extends \yii\base\Component
         return $this->process($reader, $file, $builder);
     }
 
-    public function process(IReader $reader, FileInterface $file, BuilderInterface $builder): bool
+    public function process(IReader $reader, FileInterface $file, Builder $builder): bool
     {
         try {
             $spreadsheet = $reader->load($file->getPath());

@@ -1,22 +1,22 @@
 <?php
 
-namespace app\src\components\importer\interfaces;
+namespace app\src\components\importer\builders;
 
 use app\src\base\exceptions\UserException;
 use yii\base\Model;
 use yii\db\ActiveRecord;
 
-interface BuilderInterface
+abstract class Builder
 {
     /**
      * @return Model
      */
-    public function getForm(): Model;
+    abstract public function getForm(): Model;
 
     /**
      * @param Model $form
      * @return ActiveRecord
      * @throws UserException
      */
-    public function build(Model $form): ActiveRecord;
+    abstract public function build(Model $form): ActiveRecord;
 }

@@ -4,11 +4,10 @@ namespace app\src\components\importer\builders;
 
 use app\models\db\City;
 use app\src\base\exceptions\UserException;
-use app\src\components\importer\interfaces\BuilderInterface;
 use app\src\components\importer\models\forms\CityForm;
 use yii\base\Model;
 
-class CityBuilder implements BuilderInterface
+class CityBuilder extends Builder
 {
     /**
      * {@inheritdoc}
