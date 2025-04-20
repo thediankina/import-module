@@ -26,6 +26,10 @@ return [
                 ],
             ],
         ],
+        'storage' => [
+            'class' => 'app\src\components\storage\Component',
+            'dirPath' => $_ENV['STORAGE_DIR_PATH'],
+        ],
         'importer' => [
             'class' => 'app\src\components\importer\Component',
             'readerType' => \PhpOffice\PhpSpreadsheet\IOFactory::READER_CSV,

@@ -26,11 +26,15 @@ class Queue extends \yii\queue\cli\Queue
         $this->messageHandler = function ($id, $message, $ttr = null, $attempt = null) {
             list($job, $error) = $this->unserializeMessage($message);
 
-            if ($error !== null) {
-                LogHelper::exception($error);
-            }
+            try {
+                if ($error !== null) {
+                    throw $error;
+                }
 
-            $job?->execute($this);
+                $job->execute($this);
+            } catch (\Throwable $e) {
+                LogHelper::exception($e);
+            }
         };
     }
 

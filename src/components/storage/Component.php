@@ -28,7 +28,7 @@ class Component extends \yii\base\Component
         $file = new File(
             name: 'file_' . time(),
             extension: $uploadedFile->getExtension(),
-            dirPath: $this->dirPath,
+            dirPath: $this->dirPath
         );
 
         if (!$uploadedFile->saveAs($file->getPath())) {
@@ -36,5 +36,22 @@ class Component extends \yii\base\Component
         }
 
         return $file;
+    }
+
+    public function get(string $baseName): ?File
+    {
+        $filePath = $this->dirPath . '/' . $baseName;
+
+        if (!file_exists($filePath)) {
+            return null;
+        }
+
+        ['filename' => $fileName, 'extension' => $extension] = pathinfo($filePath);
+
+        return new File(
+            name: $fileName,
+            extension: $extension,
+            dirPath: $this->dirPath
+        );
     }
 }
