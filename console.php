@@ -1,6 +1,7 @@
 <?php
 
 $db = require __DIR__ . '/database.php';
+$kafka = require __DIR__ . '/kafka.php';
 
 return [
     'id' => 'app-console',
@@ -29,5 +30,6 @@ return [
             'class' => 'app\src\components\importer\Component',
             'readerType' => \PhpOffice\PhpSpreadsheet\IOFactory::READER_CSV,
         ],
+        'kafka' => $kafka,
     ],
 ];

@@ -1,6 +1,7 @@
 <?php
 
 $db = require __DIR__ . '/database.php';
+$kafka = require __DIR__ . '/kafka.php';
 
 return [
     'id' => 'app',
@@ -39,5 +40,6 @@ return [
             'class' => 'app\src\components\storage\Component',
             'dirPath' => $_ENV['STORAGE_DIR_PATH'],
         ],
+        'kafka' => $kafka,
     ],
 ];
