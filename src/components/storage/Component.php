@@ -4,7 +4,6 @@ namespace app\src\components\storage;
 
 use app\src\components\storage\objects\File;
 use Yii;
-use yii\web\ServerErrorHttpException;
 use yii\web\UploadedFile;
 
 class Component extends \yii\base\Component
@@ -22,10 +21,9 @@ class Component extends \yii\base\Component
 
     /**
      * @param UploadedFile $uploadedFile
-     * @return File
-     * @throws ServerErrorHttpException
+     * @return File|null
      */
-    public function save(UploadedFile $uploadedFile): File
+    public function save(UploadedFile $uploadedFile): ?File
     {
         $file = new File(
             name: 'file_' . time(),
@@ -34,7 +32,7 @@ class Component extends \yii\base\Component
         );
 
         if (!$uploadedFile->saveAs($file->getPath())) {
-            throw new ServerErrorHttpException('The attempt to save uploaded file failed.');
+            return null;
         }
 
         return $file;
