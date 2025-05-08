@@ -32,6 +32,8 @@ $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
 
 <main class="flex-shrink-0">
     <div class="container">
+        <?= $this->render('alerts/success'); ?>
+        <?= $this->render('alerts/error'); ?>
         <?= $content ?>
     </div>
 </main>
