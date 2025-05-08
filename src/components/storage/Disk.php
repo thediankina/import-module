@@ -2,13 +2,15 @@
 
 namespace app\src\components\storage;
 
+use app\src\components\storage\interfaces\StorageInterface;
 use app\src\components\storage\objects\File;
 use Yii;
+use yii\base\Component;
 use yii\web\UploadedFile;
 
-class Component extends \yii\base\Component
+class Disk extends Component implements StorageInterface
 {
-    private $dirPath;
+    public string $dirPath;
 
     /**
      * {@inheritdoc}
@@ -20,14 +22,12 @@ class Component extends \yii\base\Component
     }
 
     /**
-     * @param UploadedFile $uploadedFile
-     * @return File|null
+     * {@inheritdoc}
      */
     public function save(UploadedFile $uploadedFile): ?File
     {
         $file = new File(
-            name: 'file_' . time(),
-            extension: $uploadedFile->getExtension(),
+            baseName: 'file_' . time() . '.' . $uploadedFile->getExtension(),
             dirPath: $this->dirPath
         );
 
@@ -38,20 +38,20 @@ class Component extends \yii\base\Component
         return $file;
     }
 
-    public function get(string $baseName): ?File
+    /**
+     * {@inheritdoc}
+     */
+    public function get(string $fileBaseName): ?File
     {
-        $filePath = $this->dirPath . '/' . $baseName;
+        $file = new File(
+            baseName: $fileBaseName,
+            dirPath: $this->dirPath
+        );
 
-        if (!file_exists($filePath)) {
+        if (!file_exists($file->getPath())) {
             return null;
         }
 
-        ['filename' => $fileName, 'extension' => $extension] = pathinfo($filePath);
-
-        return new File(
-            name: $fileName,
-            extension: $extension,
-            dirPath: $this->dirPath
-        );
+        return $file;
     }
 }

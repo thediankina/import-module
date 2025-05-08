@@ -36,12 +36,11 @@ class Start extends Action
                 throw new ServerErrorHttpException('The attempt to save uploaded file failed.');
             }
 
-            $job = new ImportJob([
+            Yii::$app->kafka->getQueue('importer')->push(new ImportJob([
                 'builderType' => BuilderType::CITY,
                 'fileBaseName' => $file->getBaseName(),
-            ]);
+            ]));
 
-            Yii::$app->kafka->getQueue('importer')->push($job);
             Yii::$app->session->setFlash('success', 'Import started.');
         }
 

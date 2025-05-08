@@ -9,13 +9,11 @@ class File extends BaseObject implements FileInterface
 {
     /**
      * {@inheritdoc}
-     * @param string $name
-     * @param string $extension
+     * @param string $baseName
      * @param string $dirPath
      */
     public function __construct(
-        private readonly string $name,
-        private readonly string $extension,
+        private readonly string $baseName,
         private readonly string $dirPath,
         $config = []
     )
@@ -23,19 +21,9 @@ class File extends BaseObject implements FileInterface
         parent::__construct($config);
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getExtension(): string
-    {
-        return $this->extension;
-    }
-
     public function getBaseName(): string
     {
-        return $this->getName() . '.' . $this->getExtension();
+        return $this->baseName;
     }
 
     /**

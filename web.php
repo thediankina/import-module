@@ -50,7 +50,7 @@ return [
             ],
         ],
         'storage' => [
-            'class' => 'app\src\components\storage\Component',
+            'class' => 'app\src\components\storage\Disk',
             'dirPath' => $_ENV['STORAGE_DIR_PATH'],
         ],
         'kafka' => $kafka,
