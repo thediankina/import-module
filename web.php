@@ -7,6 +7,9 @@ return [
     'id' => 'app',
     'basePath' => __DIR__,
     'bootstrap' => ['log'],
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
+    ],
     'controllerNamespace' => 'app\controllers',
     'components' => [
         'db' => $db,
@@ -35,6 +38,14 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'suffix' => '/',
+            'normalizer' => [
+                'class' => 'yii\web\UrlNormalizer',
+                'action' => \yii\web\UrlNormalizer::ACTION_REDIRECT_PERMANENT,
+            ],
+            'rules' => [
+                '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
+            ],
         ],
         'storage' => [
             'class' => 'app\src\components\storage\Component',
