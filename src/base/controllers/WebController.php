@@ -3,6 +3,7 @@
 namespace app\src\base\controllers;
 
 use app\src\base\exceptions\UserException;
+use app\src\helpers\LogHelper;
 use Throwable;
 use Yii;
 use yii\web\Controller;
@@ -20,7 +21,7 @@ class WebController extends Controller
             Yii::$app->session->setFlash('error', $e->getMessage());
         } catch (Throwable $e) {
             Yii::$app->session->setFlash('error', 'An internal error has occurred.');
-            Yii::error($e->getMessage() . "\n" . $e->getTraceAsString());
+            LogHelper::exception($e);
         }
 
         return $this->redirect($this->request->referrer);
