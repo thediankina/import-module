@@ -1,7 +1,6 @@
 <?php
 
 use app\assets\AppAsset;
-use yii\bootstrap5\NavBar;
 use yii\helpers\Html;
 use yii\web\View;
 
@@ -28,12 +27,7 @@ $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
 <?php $this->beginBody(); ?>
 
 <header>
-    <?php NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top'],
-    ]); ?>
-    <?php NavBar::end(); ?>
+    <?= $this->render('header'); ?>
 </header>
 
 <main class="flex-shrink-0">
@@ -43,9 +37,7 @@ $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
 </main>
 
 <footer class="mt-auto py-3 bg-light">
-    <div class="container">
-        Diana Galiulina, 2025
-    </div>
+    <?= $this->render('footer'); ?>
 </footer>
 
 <?php $this->endBody(); ?>
