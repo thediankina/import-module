@@ -8,7 +8,7 @@ use yii\base\InvalidConfigException;
 
 class Component extends \yii\base\Component
 {
-    private $queues = [];
+    public $queues = [];
 
     /**
      * {@inheritdoc}

@@ -20,6 +20,8 @@ class ImportForm extends Model
                 'skipOnEmpty' => false,
                 'extensions' => ['csv'],
                 'maxSize' => 5 * 1024 * 1024,
+                'checkExtensionByMimeType' => false,
+                'mimeTypes' => ['text/csv', 'text/plain'],
             ],
         ];
     }
