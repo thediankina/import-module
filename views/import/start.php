@@ -1,9 +1,9 @@
 <?php
 
 use app\models\forms\ImportForm;
+use yii\bootstrap5\ActiveForm;
 use yii\helpers\Html;
 use yii\web\View;
-use yii\widgets\ActiveForm;
 
 /**
  * @var View $this

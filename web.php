@@ -5,10 +5,12 @@ $kafka = require __DIR__ . '/kafka.php';
 
 return [
     'id' => 'app',
+    'name' => 'Import module',
     'basePath' => __DIR__,
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'controllerNamespace' => 'app\controllers',
     'components' => [
