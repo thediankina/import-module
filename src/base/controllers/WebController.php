@@ -3,7 +3,7 @@
 namespace app\src\base\controllers;
 
 use app\src\base\exceptions\UserException;
-use app\src\helpers\LogHelper;
+use app\src\base\helpers\LogHelper;
 use Throwable;
 use Yii;
 use yii\web\Controller;

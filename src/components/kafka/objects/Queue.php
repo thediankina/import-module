@@ -2,7 +2,7 @@
 
 namespace app\src\components\kafka\objects;
 
-use app\src\helpers\LogHelper;
+use app\src\base\helpers\LogHelper;
 use longlang\phpkafka\Consumer\Consumer;
 use longlang\phpkafka\Consumer\ConsumerConfig;
 use longlang\phpkafka\Producer\Producer;
